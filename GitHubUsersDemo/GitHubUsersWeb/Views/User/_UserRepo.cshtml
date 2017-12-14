@@ -28,8 +28,8 @@
         <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SvnUrl)
+        <td>            
+            <a href="@item.SvnUrl" target="_blank">@item.SvnUrl</a>
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.FullName)
