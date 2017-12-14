@@ -1,0 +1,68 @@
+﻿@model GitHubUsersWeb.Models.UserViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        @Html.ValidationMessageFor(x => x.ErrorMessage)
+    </div>
+}
+
+<form method="GET">
+    <h2>Search</h2>
+    <input type="search" name="loginName"/>
+    <input class="btn btn-primary" type="submit" value="Search by login name"/>
+</form>
+
+
+@if (Model != null)
+{
+    <h2>GitHub User</h2>
+    <div>
+        <hr/>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Login)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Login)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.AvatarUrl)
+            </dt>
+
+            <dd>
+                <img src="@Url.Content(Model.AvatarUrl)"/>
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Location)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Location)
+            </dd>
+
+        </dl>
+    </div>
+
+    <div>
+        @Html.Partial("_UserRepo", Model.Repositories)
+    </div>
+    <p>
+        @Html.ActionLink("Back to Search", "Index")
+    </p>
+}
