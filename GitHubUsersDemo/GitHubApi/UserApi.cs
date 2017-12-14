@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Configuration;
 using AutoMapper;
+using GitHubApi.ErrorHandling;
 using GitHubDataModel;
 using Octokit;
 using User = GitHubDataModel.User;

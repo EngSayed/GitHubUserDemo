@@ -1,4 +1,5 @@
-﻿using GitHubDataModel;
+﻿using GitHubApi.ErrorHandling;
+using GitHubDataModel;
 using NUnit.Framework;
 using Assert = NUnit.Framework.Assert;
 

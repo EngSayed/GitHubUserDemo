@@ -1,4 +1,4 @@
-﻿namespace GitHubApi
+﻿namespace GitHubApi.ErrorHandling
 {
     public class UserNotFoundException : ApplicationExceptionBase
     {

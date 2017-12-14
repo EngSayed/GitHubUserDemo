@@ -54,10 +54,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationException.cs" />
+    <Compile Include="ErrorHandling\ApplicationException.cs" />
+    <Compile Include="ErrorHandling\ApplicationExceptionBase.cs" />
+    <Compile Include="ErrorHandling\ExceptionFactory.cs" />
     <Compile Include="UserApi.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserNotFoundException.cs" />
+    <Compile Include="ErrorHandling\UserNotFoundException.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GitHubDataModel\GitHubDataModel.csproj">

@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using AutoMapper;
 using GitHubApi;
+using GitHubApi.ErrorHandling;
 using GitHubDataModel;
 using GitHubUsersWeb.Models;
 
@@ -11,36 +12,34 @@ namespace GitHubUsersWeb.Controllers
     {
         public async Task<ActionResult> Index(string loginName)
         {
-            if (!string.IsNullOrEmpty(loginName))
+            if (string.IsNullOrEmpty(loginName))
+                return View();
+            try
             {
-                try
-                {
-                    var api = new UserApi();
-                    var user = await api.GetUser(loginName);
+                var api = new UserApi();
+                var user = await api.GetUser(loginName);
 
-                    var config = new MapperConfiguration(cfg =>
-                    {
-                        cfg.CreateMap<User, UserViewModel>();
-                        cfg.CreateMap<UserRepo, UserReporViewModel>();
-                    });
-                    var mapper = config.CreateMapper();
-
-                    var mappedUser = mapper.Map<User, UserViewModel>(user);
-
-                    return View("Index", mappedUser);
-                }
-                catch (ApplicationExceptionBase exception)
+                var config = new MapperConfiguration(cfg =>
                 {
-                    ModelState.AddModelError("ErrorMessage", exception.DisplayMessage);
-                    return View();
-                }
-                catch (System.Exception exception)
-                {
-                    ModelState.AddModelError("ErrorMessage", exception.Message);
-                    return View();
-                }
+                    cfg.CreateMap<User, UserViewModel>();
+                    cfg.CreateMap<UserRepo, UserReporViewModel>();
+                });
+                var mapper = config.CreateMapper();
+
+                var mappedUser = mapper.Map<User, UserViewModel>(user);
+
+                return View("Index", mappedUser);
             }
-            return View();
+            catch (ApplicationExceptionBase exception)
+            {
+                ModelState.AddModelError("ErrorMessage", exception.DisplayMessage);
+                return View();
+            }
+            catch (System.Exception exception)
+            {
+                ModelState.AddModelError("ErrorMessage", exception.Message);
+                return View();
+            }
         }
     }
 }
