@@ -11,12 +11,13 @@
     </div>
 }
 
-<form method="GET">
+
+@using (Html.BeginForm("Index", "User", FormMethod.Get))
+{
     <h2>Search</h2>
     <input type="search" name="loginName"/>
     <input class="btn btn-primary" type="submit" value="Search by login name"/>
-</form>
-
+}
 
 @if (Model != null)
 {
