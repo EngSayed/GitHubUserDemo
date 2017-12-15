@@ -7,6 +7,7 @@ namespace GitHubUsersWeb.Models
     {
         public string Login { get; set; }
         public int Id { get; set; }
+        [Display(Name = "Photo")]
         public string AvatarUrl { get; set; }
         [Display(Name = "Name")]
         public string Name { get; set; }

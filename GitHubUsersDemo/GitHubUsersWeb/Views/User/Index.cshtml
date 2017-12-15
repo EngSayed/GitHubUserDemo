@@ -6,7 +6,7 @@
 
 @if (!ViewData.ModelState.IsValid)
 {
-    <div class="alert alert-danger">
+    <div class="alert alert-danger app-error-msg">
         @Html.ValidationMessageFor(x => x.ErrorMessage)
     </div>
 }
@@ -14,7 +14,7 @@
 
 @using (Html.BeginForm("Index", "User", FormMethod.Get))
 {
-    <h2>Search</h2>
+    <h2>Search User</h2>
     <input type="search" name="loginName"/>
     <input class="btn btn-primary" type="submit" value="Search by login name"/>
 }
@@ -24,44 +24,27 @@
     <h2>GitHub User</h2>
     <div>
         <hr/>
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Login)
-            </dt>
+        <dl class="dl-horizontal">            
+            <dd>
+                <img src="@Url.Content(Model.AvatarUrl)" alt="No Photo" class="profile-pic"/>
+            </dd>
 
             <dd>
-                @Html.DisplayFor(model => model.Login)
+                <h3> @Html.DisplayFor(model => model.Name) </h3>
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.AvatarUrl)
-            </dt>
-
-            <dd>
-                <img src="@Url.Content(Model.AvatarUrl)" alt="No Photo"/>
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Name)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Name)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Location)
+                <img src="~/Content/Images/location_32.png" class="locationLogo"/>
             </dt>
 
             <dd>
                 @Html.DisplayFor(model => model.Location)
             </dd>
-
         </dl>
     </div>
 
     <div>
-        @Html.Partial("_UserRepo", Model.Repositories)
+        @{ Html.RenderPartial("_UserRepo", Model.Repositories); }
     </div>
     <p>
         @Html.ActionLink("Back to Search", "Index")
