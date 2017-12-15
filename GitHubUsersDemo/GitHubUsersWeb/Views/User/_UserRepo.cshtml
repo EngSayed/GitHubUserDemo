@@ -1,49 +1,53 @@
 ﻿@model IEnumerable<GitHubUsersWeb.Models.UserReporViewModel>
+@{
+    TempData.Keep("User");
+}
 
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.ActionLink("Name", "Sort", new { sortOrder = ViewBag.NameSortParm })
         </th>
         <th>
             @Html.DisplayNameFor(model => model.SvnUrl)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FullName)
+            @Html.ActionLink("Full Name", "Sort", new { sortOrder = ViewBag.FullNameSortParm })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
+            @Html.ActionLink("Description", "Sort", new { sortOrder = ViewBag.DescrSortParm })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Language)
+            @Html.ActionLink("Language", "Sort", new { sortOrder = ViewBag.LanguageSortParm })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.StargazersCount)
+            @Html.ActionLink("Stargazers Count", "Sort", new { sortOrder = ViewBag.StarsSortParm })
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>            
-            <a href="@item.SvnUrl" target="_blank">@item.SvnUrl</a>
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FullName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Language)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StargazersCount)
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                <a href="@item.SvnUrl" target="_blank">@item.SvnUrl</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Language)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StargazersCount)
+            </td>
+        </tr>
+    }
 
 </table>
