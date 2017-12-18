@@ -2,13 +2,10 @@
 
 namespace GitHubApi.ErrorHandling
 {
-    public abstract class ApplicationExceptionBase : Exception
+    public abstract class ApplicationExceptionBase : System.ApplicationException
     {
-        public string DisplayMessage { get; set; }
-
-        protected ApplicationExceptionBase(string message)
+        protected ApplicationExceptionBase(string message, Exception innerException = null) : base(message, innerException)
         {
-            DisplayMessage = message;
         }
     }
 }

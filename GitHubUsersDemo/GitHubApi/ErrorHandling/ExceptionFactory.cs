@@ -8,15 +8,15 @@ namespace GitHubApi.ErrorHandling
         {
             if (exception.Message.ToLower().Contains("not found"))
             {
-                return new UserNotFoundException("User cannot be found");
+                return new UserNotFoundException("User cannot be found", exception);
             }
 
             if (exception.Message.ToLower().Contains("string cannot be empty"))
             {
-                return new ApplicationException("Login name cannot be empty");
+                return new ApplicationGeneralException("Login name cannot be empty", exception);
             }
 
-            return new ApplicationException(exception.Message);
+            return new ApplicationGeneralException(exception.Message, exception);
         }
     }
 }

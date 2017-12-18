@@ -36,7 +36,7 @@ namespace GitHubUsersWeb.Controllers
             }
             catch (ApplicationExceptionBase exception)
             {
-                ModelState.AddModelError("ErrorMessage", exception.DisplayMessage);
+                ModelState.AddModelError("ErrorMessage", exception.Message);
                 return View();
             }
             catch (System.Exception exception)

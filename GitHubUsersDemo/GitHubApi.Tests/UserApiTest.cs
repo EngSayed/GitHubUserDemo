@@ -39,7 +39,7 @@ namespace GitHubApi.Tests
         {
             var api = new UserApi();
 
-            Assert.Throws<ApplicationException>(async () => await api.GetUser(" "));
+            Assert.Throws<ApplicationGeneralException>(async () => await api.GetUser(" "));
         }
     }
 }

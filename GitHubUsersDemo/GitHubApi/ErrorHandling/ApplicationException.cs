@@ -1,8 +1,10 @@
-﻿namespace GitHubApi.ErrorHandling
+﻿using System;
+
+namespace GitHubApi.ErrorHandling
 {
-    public class ApplicationException : ApplicationExceptionBase
+    public class ApplicationGeneralException : ApplicationExceptionBase
     {
-        public ApplicationException(string message) : base(message)
+        public ApplicationGeneralException(string message, Exception innerException = null) : base(message, innerException)
         {
         }
     }
